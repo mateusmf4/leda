@@ -1,0 +1,5 @@
+.vscode/
+pom.xml
+*-send.log
+.env
+target/
