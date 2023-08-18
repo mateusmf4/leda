@@ -1,7 +1,5 @@
 package sorting.divideAndConquer;
 
-import java.util.Arrays;
-
 import sorting.AbstractSorting;
 import util.Util;
 
@@ -40,13 +38,5 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		int pivot = partitionArr(array, leftIndex, rightIndex);
 		sort(array, leftIndex, pivot - 1);
 		sort(array, pivot + 1, rightIndex);
-	}
-
-	public static void main(String[] args) {
-		Integer[] epic = new Integer[] { 2, 4, 3, 1 };
-		QuickSort<Integer> foo = new QuickSort<>();
-		System.out.println(Arrays.toString(epic));
-		foo.sort(epic, 0, epic.length - 1);
-		System.out.println(Arrays.toString(epic));
 	}
 }
