@@ -1,6 +1,9 @@
 package sorting.divideAndConquer;
 
+import java.util.Arrays;
+
 import sorting.AbstractSorting;
+import util.Util;
 
 /**
  * Quicksort is based on the divide-and-conquer paradigm. The algorithm chooses
@@ -12,9 +15,38 @@ import sorting.AbstractSorting;
  */
 public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
+	private int partitionArr(T[] array, int leftIndex, int rightIndex) {
+		// target element to be the pivot
+		final int target = leftIndex;
+		int i = target;
+		T pivot = array[target];
+		for (int j = target + 1; j <= rightIndex; ++j) {
+			if (pivot.compareTo(array[j]) > 0) {
+				// this sort of acts like a selection sort,
+				// elements smaller than the pivot get pushed to
+				// the beginning, but after the pivot
+				i++;
+				Util.swap(array, i, j);
+			}
+		}
+		// swap the pivot to the end of the sorted sub array
+		Util.swap(array, target, i);
+		return i;
+	}
+
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (leftIndex >= rightIndex) return;
+		int pivot = partitionArr(array, leftIndex, rightIndex);
+		sort(array, leftIndex, pivot - 1);
+		sort(array, pivot + 1, rightIndex);
+	}
+
+	public static void main(String[] args) {
+		Integer[] epic = new Integer[] { 2, 4, 3, 1 };
+		QuickSort<Integer> foo = new QuickSort<>();
+		System.out.println(Arrays.toString(epic));
+		foo.sort(epic, 0, epic.length - 1);
+		System.out.println(Arrays.toString(epic));
 	}
 }
