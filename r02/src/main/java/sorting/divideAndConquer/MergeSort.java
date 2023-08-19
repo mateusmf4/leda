@@ -19,29 +19,36 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		sort(array, middle + 1, rightIndex);
 
 		// merging the two sub arrays
+		merge(array, leftIndex, middle, rightIndex);
+	}
 
-		int size = rightIndex - leftIndex + 1;
+	// this assumes that the two subarrays are right after each other,
+	// so leftB = rightA + 1
+	public void merge(T[] array, int leftA, int rightA, int rightB) {
+		final int originalLeft = leftA;
+		
+		int size = rightB - leftA + 1;
+		@SuppressWarnings("unchecked")
 		T[] newArr = (T[])(new Comparable[size]);
-
-		int indexA = leftIndex;
-		int indexB = middle + 1;
+		
+		int leftB = rightA + 1;
 		int indexOut = 0;
 
-		while (indexA <= middle && indexB <= rightIndex) {
-			if (array[indexA].compareTo(array[indexB]) <= 0) {
-				newArr[indexOut++] = array[indexA++];
+		while (leftA <= rightA && leftB <= rightB) {
+			if (array[leftA].compareTo(array[leftB]) <= 0) {
+				newArr[indexOut++] = array[leftA++];
 			} else {
-				newArr[indexOut++] = array[indexB++];
+				newArr[indexOut++] = array[leftB++];
 			}
 		}
-		while (indexA <= middle) {
-			newArr[indexOut++] = array[indexA++];
+		while (leftA <= rightA) {
+			newArr[indexOut++] = array[leftA++];
 		}
-		while (indexB <= rightIndex) {
-			newArr[indexOut++] = array[indexB++];
+		while (leftB <= rightB) {
+			newArr[indexOut++] = array[leftB++];
 		}
 		for (int i = 0; i < size; ++i) {
-			array[leftIndex + i] = newArr[i];
+			array[originalLeft + i] = newArr[i];
 		}
 	}
 }
