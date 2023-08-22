@@ -34,9 +34,9 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 		MERGESORT_APPLICATIONS = 0;
 		INSERTIONSORT_APPLICATIONS = 0;
 		
-		if (leftIndex < 0 || rightIndex >= array.length) return;
-
-		mergeSort(array, leftIndex, rightIndex);
+		if (leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
+			mergeSort(array, leftIndex, rightIndex);
+		}
 	}
 
 	private void mergeSort(T[] array, int leftIndex, int rightIndex) {
@@ -59,13 +59,10 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 		INSERTIONSORT_APPLICATIONS++;
 		for (int i = leftIndex + 1; i <= rightIndex; ++i) {
 			T valor = array[i];
-			int j;
-			for (j = i; j > leftIndex; --j) {
-				if (valor.compareTo(array[j - 1]) < 0) {
-					array[j] = array[j - 1];
-				} else {
-					break;
-				}
+			int j = i;
+			while (j > leftIndex && valor.compareTo(array[j - 1]) < 0) {
+				array[j] = array[j - 1];
+				--j;
 			}
 			array[j] = valor;
 		}

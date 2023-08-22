@@ -12,14 +12,14 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (leftIndex >= rightIndex || leftIndex < 0 || rightIndex >= array.length) return;
+		if (leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
+			int middle = (leftIndex + rightIndex) / 2;
+			sort(array, leftIndex, middle);
+			sort(array, middle + 1, rightIndex);
 
-		int middle = (leftIndex + rightIndex) / 2;
-		sort(array, leftIndex, middle);
-		sort(array, middle + 1, rightIndex);
-
-		// merging the two sub arrays
-		merge(array, leftIndex, middle, rightIndex);
+			// merging the two sub arrays
+			merge(array, leftIndex, middle, rightIndex);
+		}
 	}
 
 	// this assumes that the two subarrays are right after each other,
@@ -28,7 +28,6 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		final int originalLeft = leftA;
 		
 		int size = rightB - leftA + 1;
-		@SuppressWarnings("unchecked")
 		T[] newArr = (T[])(new Comparable[size]);
 		
 		int leftB = rightA + 1;

@@ -27,32 +27,32 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 	}
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (leftIndex >= rightIndex || leftIndex < 0 || rightIndex >= array.length) return;
+		if (leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
+			int left = leftIndex;
+			int right = rightIndex;
+			int center = (left + right) / 2;
 
-		int left = leftIndex;
-		int right = rightIndex;
-		int center = (left + right) / 2;
+			swapIfLess(array, right, center);
+			swapIfLess(array, center, left);
+			swapIfLess(array, right, center);
+			
+			// agora array[left] < array[center] < array[right]
 
-		swapIfLess(array, right, center);
-		swapIfLess(array, center, left);
-		swapIfLess(array, right, center);
-		
-		// agora array[left] < array[center] < array[right]
-
-		int pivot = right - 1;
-		Util.swap(array, center, pivot);
-		int i = pivot;
-		for (int j = pivot - 1; j > left; --j) {
-			if (array[j].compareTo(array[pivot]) > 0) {
-				i--;
-				Util.swap(array, j, i);
+			int pivot = right - 1;
+			Util.swap(array, center, pivot);
+			int i = pivot;
+			for (int j = pivot - 1; j > left; --j) {
+				if (array[j].compareTo(array[pivot]) > 0) {
+					i--;
+					Util.swap(array, j, i);
+				}
 			}
-		}
-		Util.swap(array, pivot, i);
-		// onde o pivot acabou ficando
-		pivot = i;
+			Util.swap(array, pivot, i);
+			// onde o pivot acabou ficando
+			pivot = i;
 
-		sort(array, left, pivot - 1);
-		sort(array, pivot + 1, right);
+			sort(array, left, pivot - 1);
+			sort(array, pivot + 1, right);
+		}
 	}
 }
