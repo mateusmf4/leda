@@ -86,6 +86,11 @@ public class MeuTesteIncrivel {
 		Assert.assertEquals(Integer.valueOf(32), this.implementation.getOrderStatistics(vetorTamImpar, 7));
 	}
 
+	@Test
+	public void test01K10() {
+		Assert.assertEquals(Integer.valueOf(31), this.implementation.getOrderStatistics(vetorTamPar, 10));
+	}
+
 
 	@Test
 	public void testVazio() {
