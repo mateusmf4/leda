@@ -26,67 +26,55 @@ public class OrderStatisticsSelectionImpl<T extends Comparable<T>> implements Or
 	 */
 	@Override
 	public T getOrderStatistics(T[] array, int k) {
-		int ind = getSmallestIndex(array, k);
-		if (ind == -1) {
-			return null;
-		} else {
-			return array[ind];
-		}
-	}
-
-	/**
-	 * Retorna o k-ésimo menor indice. Se esse elemento não existe, retorna -1
-	 */
-	private int getSmallestIndex(T[] array, int k) {
 		if (k == 1) {
 			// caso base: o menor de todos
-			return menorIndice(array);
+			return menorValor(array);
 		} else {
-			int menorAnterior = getSmallestIndex(array, k - 1);
-			if (menorAnterior == -1) {
-				return -1;
-			} else {
-				return menorIndiceMaiorQue(array, menorAnterior);
-			}
+			T menorAnterior = getOrderStatistics(array, k - 1);
+			if (menorAnterior == null)
+				return null;
+			return menorValorMaiorQue(array, menorAnterior);
 		}
 	}
 
-	private int menorIndice(T[] array) {
-		if (array.length == 0) {
-			return -1;
+	// Menor entre dois valores. Se um dos valores for null, retorna o outro.
+	private T menorEntre(T a, T b) {
+		if (a == null) return b;
+		if (b == null) return a;
+		if (a.compareTo(b) < 0) {
+			return a;
+		}
+		return b;
+	}
+
+	// Retorna o menor valor da array.
+	private T menorValor(T[] array) {
+		return menorValor(array, 0);
+	}
+
+	private T menorValor(T[] array, int start) {
+		// caso base: array vazia, o menor é null
+		if (start >= array.length)
+			return null;
+		return menorEntre(array[start], menorValor(array, start + 1));
+	}
+
+	// Retorna o menor valor da array que é maior do que `maiorQue`.
+	// Se nenhum elemento é maior do que `maiorQue`, retorna null.
+	private T menorValorMaiorQue(T[] array, T maiorQue) {
+		return menorValorMaiorQue(array, maiorQue, 0);
+	}
+
+	private T menorValorMaiorQue(T[] array, T maiorQue, int start) {
+		// caso base: array vazia, o menor é null
+		if (start >= array.length)
+			return null;
+		T valor = array[start];
+		T menorResto = menorValorMaiorQue(array, maiorQue, start + 1);
+		if (valor.compareTo(maiorQue) > 0) {
+			return menorEntre(valor, menorResto);
 		} else {
-			return menorIndice(array, 0, 0);
+			return menorResto;
 		}
 	}
-
-	private int menorIndice(T[] array, int ind, int menor) {
-		if (ind >= array.length) {
-			return menor;
-		} else {
-			if (array[ind].compareTo(array[menor]) < 0) {
-				menor = ind;
-			}
-			return menorIndice(array, ind + 1, menor);
-		}
-	}
-
-	private int menorIndiceMaiorQue(T[] array, int maiorQue) {
-		return menorIndiceMaiorQue(array, 0, maiorQue);
-	}
-
-	private int menorIndiceMaiorQue(T[] array, int left, int maiorQue) {
-		if (left >= array.length) {
-			return -1;
-		} else {
-			T valor = array[left];
-			int menorDoResto = menorIndiceMaiorQue(array, left + 1, maiorQue);
-			if (valor.compareTo(array[maiorQue]) > 0) {
-				if (menorDoResto == -1 || valor.compareTo(array[menorDoResto]) < 0) {
-					return left;
-				}
-			}
-			return menorDoResto;
-		}
-	}
-
 }
