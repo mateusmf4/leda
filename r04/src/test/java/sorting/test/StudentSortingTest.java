@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.linearSorting.CountingSort;
+import sorting.linearSorting.ExtendedCountingSort;
 
 public class StudentSortingTest {
 
@@ -16,6 +17,7 @@ public class StudentSortingTest {
 	private Integer[] vetorVazio = {};
 	private Integer[] vetorValoresRepetidos;
 	private Integer[] vetorValoresIguais;
+	private Integer[] vetorValoresNegativos;
 
 	public AbstractSorting<Integer> implementation;
 
@@ -27,6 +29,8 @@ public class StudentSortingTest {
 				11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
+		
+		this.vetorValoresNegativos = new Integer[] { 4, 9, -3, 4, 0, -5, 1, 4, -20, 3};
 
 		getImplementation();
 	}
@@ -39,7 +43,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new CountingSort();
+		this.implementation = new ExtendedCountingSort();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -106,4 +110,9 @@ public class StudentSortingTest {
 	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS
 	 * UMA PARTE DO ARRAY.
 	 */
+
+	@Test
+	public void testSortNegativo01() {
+		genericTest(vetorValoresNegativos);
+	}
 }

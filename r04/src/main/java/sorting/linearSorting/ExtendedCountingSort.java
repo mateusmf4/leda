@@ -12,8 +12,28 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (leftIndex < rightIndex) {
+			int menor = array[leftIndex];
+			int maior = array[leftIndex];
+			for (int i = leftIndex; i <= rightIndex; ++i) {
+				int valor = array[i];
+				if (valor < menor)
+					menor = valor;
+				if (valor > maior)
+					maior = valor;
+			}
+			int[] count = new int[maior - menor + 1];
+			for (int i = leftIndex; i <= rightIndex; ++i) {
+				int valor = array[i];
+				count[valor - menor]++;
+			}
+			int outIndex = leftIndex;
+			for (int i = 0; i < count.length; ++i) {
+				for (int n = 0; n < count[i]; ++n) {
+					array[outIndex++] = i + menor;
+				}
+			}
+		}
 	}
 
 }
