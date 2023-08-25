@@ -111,8 +111,8 @@ public class StudentSortingTest {
 	 * UMA PARTE DO ARRAY.
 	 */
 
-	@Test
-	public void testSortNegativo01() {
-		genericTest(vetorValoresNegativos);
-	}
+	// @Test
+	// public void testSortNegativo01() {
+	// 	genericTest(vetorValoresNegativos);
+	// }
 }

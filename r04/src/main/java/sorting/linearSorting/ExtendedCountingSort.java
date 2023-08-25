@@ -12,7 +12,7 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		if (leftIndex < rightIndex) {
+		if (leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
 			int menor = array[leftIndex];
 			int maior = array[leftIndex];
 			for (int i = leftIndex; i <= rightIndex; ++i) {
