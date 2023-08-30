@@ -39,7 +39,7 @@ public class FloorBinarySearchImpl implements Floor {
 			int middle = (rightIndex + leftIndex) / 2;
 			int compare = array[middle].compareTo(x);
 			if (compare == 0) {
-				result = array[middle];
+				result = x;
 			} else if (compare > 0) {
 				result = findFloor(array, x, leftIndex, middle - 1);
 			} else if (compare < 0) {
