@@ -3,6 +3,12 @@ package problems;
 import util.Util;
 
 public class FloorBinarySearchImpl implements Floor {
+	@Override
+	public Integer floor(Integer[] array, Integer x) {
+		quickSort(array, 0, array.length - 1);
+
+		return floor(array, x, 0, array.length - 1);
+	}
 
 	private int partition(Integer[] array, int leftIndex, int rightIndex) {
 		final int target = leftIndex;
@@ -26,14 +32,7 @@ public class FloorBinarySearchImpl implements Floor {
 		}
 	}
 
-	@Override
-	public Integer floor(Integer[] array, Integer x) {
-		quickSort(array, 0, array.length - 1);
-
-		return findFloor(array, x, 0, array.length - 1);
-	}
-
-	private Integer findFloor(Integer[] array, Integer x, int leftIndex, int rightIndex) {
+	private Integer floor(Integer[] array, Integer x, int leftIndex, int rightIndex) {
 		Integer result = null;
 		if (leftIndex <= rightIndex) {
 			int middle = (rightIndex + leftIndex) / 2;
@@ -41,10 +40,10 @@ public class FloorBinarySearchImpl implements Floor {
 			if (compare == 0) {
 				result = x;
 			} else if (compare > 0) {
-				result = findFloor(array, x, leftIndex, middle - 1);
+				result = floor(array, x, leftIndex, middle - 1);
 			} else if (compare < 0) {
 				result = array[middle];
-				Integer rest = findFloor(array, x, middle + 1, rightIndex);
+				Integer rest = floor(array, x, middle + 1, rightIndex);
 				if (rest != null)
 					result = rest;
 			}
