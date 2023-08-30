@@ -53,4 +53,19 @@ public class FloorTest {
 	public void test08() {
 		genericTest(new Integer[]{ -23, -10, 5, 20, 23, 25, 29, 24 }, -10, -10);
 	}
+
+	@Test
+	public void test09() {
+		genericTest(new Integer[]{ 10 }, 1, null);
+		genericTest(new Integer[]{ 10 }, 2, null);
+		genericTest(new Integer[]{ 10 }, 10, 10);
+		genericTest(new Integer[]{ 10 }, 15, 10);
+	}
+
+	@Test
+	public void test10() {
+		genericTest(new Integer[]{ }, 1, null);
+		genericTest(new Integer[]{ }, 2, null);
+		genericTest(new Integer[]{ }, 3, null);
+	}
 }
