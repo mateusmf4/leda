@@ -51,12 +51,4 @@ public class FloorBinarySearchImpl implements Floor {
 		}
 		return result;
 	}
-
-	public static void main(String[] args) {
-		Integer[] minhaArray = new Integer[] { 4, 6, 8, 10 };
-		FloorBinarySearchImpl impl = new FloorBinarySearchImpl();
-		System.out.println(impl.floor(minhaArray, 7));
-		System.out.println(impl.floor(minhaArray, 8));
-	}
-
 }
