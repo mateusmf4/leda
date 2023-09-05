@@ -61,4 +61,34 @@ public class QuickSelectTest {
 		genericTest(new Integer[]{ }, 2, null);
 		genericTest(new Integer[]{ }, 3, null);
 	}
+
+	@Test
+	public void testRepeated01() {
+		genericTest(new Integer[]{ 5, 3, 2, 2, 1 }, 1, 1);
+	}
+
+	@Test
+	public void testRepeated02() {
+		genericTest(new Integer[]{ 5, 3, 2, 2, 1 }, 2, 2);
+	}
+
+	@Test
+	public void testRepeated03() {
+		genericTest(new Integer[]{ 5, 3, 2, 2, 1 }, 3, 2);
+	}
+
+	@Test
+	public void testRepeated04() {
+		genericTest(new Integer[]{ 5, 3, 2, 2, 1 }, 4, 3);
+	}
+
+	@Test
+	public void testRepeated05() {
+		genericTest(new Integer[]{ 1, 1, 1, 1, 2 }, 4, 1);
+	}
+
+	@Test
+	public void testRepeated06() {
+		genericTest(new Integer[]{ 1, 1, 1, 1, 2 }, 5, 2);
+	}
 }

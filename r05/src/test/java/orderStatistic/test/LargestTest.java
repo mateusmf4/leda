@@ -23,42 +23,34 @@ public class LargestTest {
 		genericTest(new Integer[]{ 0, 1, 2, 3, 5, 6, 7 }, 4, new Integer[]{ 7, 6, 5, 3 });
 	}
 
-	// @Test
-	// public void test03() {
-	// 	genericTest(new Integer[]{ 7, 0, 2, 3, 10, 6 }, 4, 6);
-	// }
+	@Test
+	public void test03() {
+		genericTest(new Integer[]{ 0, 1, 2 }, 3, new Integer[]{ 2, 1, 0 });
+		genericTest(new Integer[]{ 0, 1, 2 }, 5, new Integer[]{});
+		genericTest(new Integer[]{ 0, 1, 2 }, 4, new Integer[]{});
+		genericTest(new Integer[]{ 0, 1, 2 }, 10, new Integer[]{});
+	}
 
-	// @Test
-	// public void test04() {
-	// 	genericTest(new Integer[]{ 7, 0, 2, 3, 10, 6 }, 5, 7);
-	// }
+	@Test
+	public void test04() {
+		genericTest(new Integer[]{}, 5, new Integer[]{});
+		genericTest(new Integer[]{}, 4, new Integer[]{});
+		genericTest(new Integer[]{}, 10, new Integer[]{});
+		genericTest(new Integer[]{}, 1, new Integer[]{});
+	}
 
-	// @Test
-	// public void test05() {
-	// 	genericTest(new Integer[]{ 7, 0, 2, 3, 10, 6 }, 10, null);
-	// }
+	@Test
+	public void testRepeated01() {
+		genericTest(new Integer[]{ 1, 1, 1, 2, 3, 4 }, 4, new Integer[]{ 4, 3, 2, 1 });
+	}
 
-	// @Test
-	// public void test06() {
-	// 	genericTest(new Integer[]{ -23, -10, 5, 20, 23, 25, 29, 24 }, 2, -10);
-	// }
+	@Test
+	public void testRepeated02() {
+		genericTest(new Integer[]{ 1, 1, 1, 2, 3, 4 }, 5, new Integer[]{ 4, 3, 2, 1, 1 });
+	}
 
-	// @Test
-	// public void test07() {
-	// 	genericTest(new Integer[]{ -23, -10, 5, 20, 23, 25, 29, 24 }, 6, 24);
-	// }
-
-	// @Test
-	// public void test08() {
-	// 	genericTest(new Integer[]{ 10 }, 1, 10);
-	// 	genericTest(new Integer[]{ 10 }, 2, null);
-	// 	genericTest(new Integer[]{ 10 }, 3, null);
-	// }
-
-	// @Test
-	// public void test09() {
-	// 	genericTest(new Integer[]{ }, 1, null);
-	// 	genericTest(new Integer[]{ }, 2, null);
-	// 	genericTest(new Integer[]{ }, 3, null);
-	// }
+	@Test
+	public void testRepeated03() {
+		genericTest(new Integer[]{ 1, 1, 1, 1 }, 3, new Integer[]{ 1, 1, 1 });
+	}
 }
