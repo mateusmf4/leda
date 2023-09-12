@@ -40,9 +40,7 @@ public class StackImpl<T> implements Stack<T> {
 	public T pop() throws StackUnderflowException {
 		if (isEmpty())
 			throw new StackUnderflowException();
-		T result = top();
-		top--;
-		return result;
+		return array[top--];
 	}
 
 }
