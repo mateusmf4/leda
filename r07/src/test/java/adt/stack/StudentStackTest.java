@@ -2,6 +2,8 @@ package adt.stack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -68,5 +70,26 @@ public class StudentStackTest {
 	@Test(expected = StackUnderflowException.class)
 	public void testPopComErro() throws StackUnderflowException {
 		assertEquals(Integer.valueOf(3), stackVazia.pop());
+	}
+
+	@Test
+	public void testTopNull() {
+		assertNull(stackVazia.top());
+	}
+
+	@Test
+	public void testTopNormal() throws StackUnderflowException {
+		assertEquals(Integer.valueOf(2), stackCheia.top());
+		assertEquals(Integer.valueOf(2), stackCheia.top());
+		assertEquals(Integer.valueOf(3), stack10.top());
+		assertEquals(Integer.valueOf(3), stack10.top());
+		
+		assertEquals(Integer.valueOf(3), stack10.pop());
+		assertEquals(Integer.valueOf(2), stack10.top());
+		assertEquals(Integer.valueOf(2), stack10.pop());
+		assertEquals(Integer.valueOf(1), stack10.top());
+		assertEquals(Integer.valueOf(1), stack10.pop());
+		assertNull(stack10.top());
+		assertThrows(StackUnderflowException.class, () -> stack10.pop());
 	}
 }

@@ -2,6 +2,7 @@ package adt.queue;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
@@ -81,6 +82,23 @@ abstract class BaseQueueTest<T extends Queue<Integer>> {
 		x.dequeue();
 		assertFalse(x.isFull());
 		assertTrue(x.isEmpty());
+	}
+
+	@Test
+	public void basicTest6() throws QueueOverflowException, QueueUnderflowException {
+		T x = getImpl(3);
+		x.enqueue(10);
+		x.enqueue(123);
+		x.enqueue(-3);
+		assertEquals(Integer.valueOf(10), x.head());
+		
+		assertEquals(Integer.valueOf(10), x.dequeue());
+		assertEquals(Integer.valueOf(123), x.dequeue());
+		assertEquals(Integer.valueOf(-3), x.dequeue());
+
+		assertNull(x.head());
+
+		assertThrows(QueueUnderflowException.class, () -> x.dequeue());
 	}
 }
 
