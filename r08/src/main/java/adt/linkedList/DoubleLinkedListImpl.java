@@ -35,14 +35,22 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeFirst() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!isEmpty()) {
+			DoubleLinkedListNode<T> prev = getHeadAsDouble().getPrevious();
+			prev.setNext(head.getNext());
+			((DoubleLinkedListNode<T>) head.getNext()).setPrevious(prev);
+			head = head.getNext();
+		}
 	}
 
 	@Override
 	public void removeLast() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!isEmpty()) {
+			DoubleLinkedListNode<T> newLast = last.getPrevious();
+			newLast.setNext(last.getNext());
+			((DoubleLinkedListNode<T>) last.getNext()).setPrevious(newLast);
+			last = newLast;
+		}
 	}
 
 	public DoubleLinkedListNode<T> getLast() {
