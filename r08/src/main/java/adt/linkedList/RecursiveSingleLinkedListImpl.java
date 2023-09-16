@@ -6,32 +6,46 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 	protected RecursiveSingleLinkedListImpl<T> next;
 
 	public RecursiveSingleLinkedListImpl() {
-
+		data = null;
+		next = null;
 	}
 
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return data == null;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int size = 0;
+		if (!isEmpty()) {
+			size = 1 + next.size();
+		}
+		return size;
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T result = null;
+		if (!isEmpty()) {
+			if (data.equals(element)) {
+				result = data;
+			} else {
+				result = next.search(element);
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (isEmpty()) {
+			data = element;
+			next = new RecursiveSingleLinkedListImpl<>();
+		} else {
+			next.insert(element);
+		}
 	}
 
 	@Override
