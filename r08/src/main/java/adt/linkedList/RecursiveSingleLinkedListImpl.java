@@ -1,5 +1,8 @@
 package adt.linkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	protected T data;
@@ -9,7 +12,6 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 		data = null;
 		next = null;
 	}
-
 
 	@Override
 	public boolean isEmpty() {
@@ -50,14 +52,27 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!isEmpty()) {
+			if (next.data != null && next.data.equals(element)) {
+				next = next.next;
+			} else {
+				next.remove(element);
+			}
+		}
+	}
+
+	private void toArrayImpl(List<T> list) {
+		if (!isEmpty()) {
+			list.add(data);
+			next.toArrayImpl(list);
+		}
 	}
 
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		List<T> arr = new ArrayList<>();
+		toArrayImpl(arr);
+		return (T[]) arr.toArray();
 	}
 
 	public T getData() {
