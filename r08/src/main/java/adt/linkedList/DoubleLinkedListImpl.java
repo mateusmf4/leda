@@ -27,19 +27,21 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 		if (isEmpty()) {
 			insert(element);
 		} else {
-			DoubleLinkedListNode<T> node = new DoubleLinkedListNode<>(element, getHeadAsDouble(), getHeadAsDouble().getPrevious());
-			getHeadAsDouble().setPrevious(node);
-			head = node;
+			DoubleLinkedListNode<T> head = getHeadAsDouble();
+			DoubleLinkedListNode<T> node = new DoubleLinkedListNode<>(element, head, head.getPrevious());
+			head.getPrevious().setNext(node);
+			head.setPrevious(node);
+			this.head = node;
 		}
 	}
 
 	@Override
 	public void removeFirst() {
 		if (!isEmpty()) {
-			DoubleLinkedListNode<T> prev = getHeadAsDouble().getPrevious();
-			prev.setNext(head.getNext());
-			((DoubleLinkedListNode<T>) head.getNext()).setPrevious(prev);
 			head = head.getNext();
+			DoubleLinkedListNode<T> prev = new DoubleLinkedListNode<>();
+			prev.setNext(head);
+			getHeadAsDouble().setPrevious(prev);
 		}
 	}
 
