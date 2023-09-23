@@ -130,5 +130,9 @@ public class StudentLinkedListTest {
 		Assert.assertArrayEquals(new Integer[] { 3, 2, 1 }, lista1.toArray());
 		l1.remove(2);
 		Assert.assertArrayEquals(new Integer[] { 3, 1 }, lista1.toArray());
+		l1.remove(1);
+		Assert.assertArrayEquals(new Integer[] { 3 }, lista1.toArray());
+		l1.remove(3);
+		Assert.assertArrayEquals(new Integer[] { }, lista1.toArray());
 	}
 }
