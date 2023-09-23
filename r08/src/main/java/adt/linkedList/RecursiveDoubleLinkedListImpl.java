@@ -27,7 +27,7 @@ public class RecursiveDoubleLinkedListImpl<T> extends
 
 	@Override
 	public void insertFirst(T element) {
-		if (previous == null) {
+		if (isEmpty()) {
 			insert(element);
 		} else if (previous.isEmpty()) {
 			RecursiveDoubleLinkedListImpl<T> node = new RecursiveDoubleLinkedListImpl<>();
