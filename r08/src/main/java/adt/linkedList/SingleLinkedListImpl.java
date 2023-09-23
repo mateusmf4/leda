@@ -52,14 +52,13 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
-		SingleLinkedListNode<T> prev = head;
-		while (!prev.isNIL() && !prev.getNext().getData().equals(element)) {
-			prev = prev.getNext();
+		SingleLinkedListNode<T> node = head;
+		while (!node.isNIL() && !node.getData().equals(element)) {
+			node = node.getNext();
 		}
-		if (!prev.isNIL()) {
-			SingleLinkedListNode<T> node = prev.getNext();
-			prev.setNext(node.getNext());
-			node.setNext(null);
+		if (!node.isNIL()) {
+			node.setData(node.getNext().getData());
+			node.setNext(node.getNext().getNext());
 		}
 	}
 
