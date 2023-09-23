@@ -23,9 +23,9 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	}
 
 	private void getImplementations() {
-		lista1 = new DoubleLinkedListImpl<>();
-		lista2 = new DoubleLinkedListImpl<>();
-		lista3 = new DoubleLinkedListImpl<>();
+		lista1 = new RecursiveDoubleLinkedListImpl<>();
+		lista2 = new RecursiveDoubleLinkedListImpl<>();
+		lista3 = new RecursiveDoubleLinkedListImpl<>();
 	}
 
 	// Métodos de DoubleLinkedList
@@ -49,7 +49,7 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	}
 
 	@Test
-	public void testEverything() {
+	public void testEverythingDouble() {
 		DoubleLinkedList<Integer> l1 = (DoubleLinkedList<Integer>) lista1;
 		l1.removeFirst();
 		l1.insertFirst(3);
