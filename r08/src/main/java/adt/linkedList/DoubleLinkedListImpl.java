@@ -51,6 +51,8 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 			DoubleLinkedListNode<T> newLast = last.getPrevious();
 			newLast.setNext(last.getNext());
 			((DoubleLinkedListNode<T>) last.getNext()).setPrevious(newLast);
+			if (last == head)
+				head = newLast;
 			last = newLast;
 		}
 	}
