@@ -64,13 +64,14 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public T[] toArray() {
-		ArrayList<T> arr = new ArrayList<>();
+		T[] arr = (T[]) new Object[this.size()];
+		int i = 0;
 		SingleLinkedListNode<T> node = head;
 		while (!node.isNIL()) {
-			arr.add(node.getData());
+			arr[i++] = node.getData();
 			node = node.getNext();
 		}
-		return (T[]) arr.toArray();
+		return arr;
 	}
 
 	public SingleLinkedListNode<T> getHead() {

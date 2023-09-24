@@ -62,18 +62,18 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 		}
 	}
 
-	private void toArrayImpl(List<T> list) {
+	private void toArrayImpl(T[] arr, int index) {
 		if (!isEmpty()) {
-			list.add(data);
-			next.toArrayImpl(list);
+			arr[index] = data;
+			next.toArrayImpl(arr, index + 1);
 		}
 	}
 
 	@Override
 	public T[] toArray() {
-		List<T> arr = new ArrayList<>();
-		toArrayImpl(arr);
-		return (T[]) arr.toArray();
+		T[] arr = (T[]) new Object[this.size()];
+		toArrayImpl(arr, 0);
+		return arr;
 	}
 
 	public T getData() {
