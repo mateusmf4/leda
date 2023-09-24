@@ -6,23 +6,18 @@ import org.junit.Test;
 
 public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 
-	private DoubleLinkedList<Integer> lista3;
+	protected DoubleLinkedList<Integer> lista3;
 
 	@Before
 	public void setUp() throws Exception {
-
-		getImplementations();
-
-		// Lista com 3 elementos.
-		lista1.insert(3);
-		lista1.insert(2);
-		lista1.insert(1);
+		super.setUp();
 
 		// Lista com 1 elemento.
 		lista3.insert(1);
 	}
 
-	private void getImplementations() {
+	@Override
+	protected void getImplementations() {
 		lista1 = new DoubleLinkedListImpl<>();
 		lista2 = new DoubleLinkedListImpl<>();
 		lista3 = new DoubleLinkedListImpl<>();

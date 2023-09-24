@@ -21,7 +21,7 @@ public class StudentLinkedListTest {
 
 	}
 
-	private void getImplementations() {
+	protected void getImplementations() {
 		lista1 = new SingleLinkedListImpl<>();
 		lista2 = new SingleLinkedListImpl<>();
 	}
