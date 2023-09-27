@@ -75,6 +75,10 @@ public class HashtableClosedAddressImpl<T> extends
 		return ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
 	}
 
+	private LinkedList<T> getSlot(int hash) {
+		return (LinkedList<T>) table[hash];
+	}
+
 	@Override
 	public void insert(T element) {
 		int hash = this.hash(element);
@@ -84,13 +88,19 @@ public class HashtableClosedAddressImpl<T> extends
 		} else {
 			COLLISIONS++;
 		}
-		((LinkedList<T>) table[hash]).add(element);
+		getSlot(hash).add(element);
+
+		++elements;
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int hash = this.hash(element);
+
+		if (table[hash] != null) {
+			getSlot(hash).remove(element);
+			--elements;
+		}
 	}
 
 	@Override
@@ -98,7 +108,7 @@ public class HashtableClosedAddressImpl<T> extends
 		int hash = this.hash(element);
 		T result = null;
 		if (table[hash] != null) {
-			LinkedList<T> list = ((LinkedList<T>) table[hash]);
+			LinkedList<T> list = getSlot(hash);
 			int index = list.indexOf(element);
 			if (index != -1)
 				result = list.get(index);
@@ -112,8 +122,7 @@ public class HashtableClosedAddressImpl<T> extends
 		
 		int hash = this.hash(element);
 		if (table[hash] != null) {
-			LinkedList<T> list = ((LinkedList<T>) table[hash]);
-			if (list.contains(element))
+			if (getSlot(hash).contains(element))
 				index = hash;
 		}
 
