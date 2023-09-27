@@ -1,8 +1,12 @@
 package adt.hashtable.closed;
 
+import java.util.LinkedList;
+
 import adt.hashtable.hashfunction.HashFunction;
+import adt.hashtable.hashfunction.HashFunctionClosedAddress;
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionFactory;
+import util.Util;
 
 public class HashtableClosedAddressImpl<T> extends
 		AbstractHashtableClosedAddress<T> {
@@ -53,14 +57,34 @@ public class HashtableClosedAddressImpl<T> extends
 	 * prime.
 	 */
 	int getPrimeAbove(int number) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int result = 0;
+		while (result == 0) {
+			if (Util.isPrime(number)) {
+				result = number;
+			} else {
+				number++;
+			}
+		}
+		return result;
+
+		// for (; Util.isPrime(number); ++number) {}
+		// return number;
+	}
+
+	private int hash(T element) {
+		return ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int hash = this.hash(element);
+
+		if (table[hash] == null) {
+			table[hash] = new LinkedList<T>();
+		} else {
+			COLLISIONS++;
+		}
+		((LinkedList<T>) table[hash]).add(element);
 	}
 
 	@Override
@@ -71,14 +95,29 @@ public class HashtableClosedAddressImpl<T> extends
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int hash = this.hash(element);
+		T result = null;
+		if (table[hash] != null) {
+			LinkedList<T> list = ((LinkedList<T>) table[hash]);
+			int index = list.indexOf(element);
+			if (index != -1)
+				result = list.get(index);
+		}
+		return result;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int index = -1;
+		
+		int hash = this.hash(element);
+		if (table[hash] != null) {
+			LinkedList<T> list = ((LinkedList<T>) table[hash]);
+			if (list.contains(element))
+				index = hash;
+		}
+
+		return index;
 	}
 
 }

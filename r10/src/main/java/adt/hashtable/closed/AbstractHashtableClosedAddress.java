@@ -2,7 +2,6 @@ package adt.hashtable.closed;
 
 import java.util.LinkedList;
 
-import util.Util;
 import adt.hashtable.AbstractHashtable;
 
 /**
