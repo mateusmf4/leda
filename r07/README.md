@@ -4,3 +4,5 @@ Deveria implementar uma pilha, uma fila, uma fila circular e uma fila utilizando
 
 ## Notas
 10.0 nos testes.
+
+9.5 no design, esqueci de checar element null em enqueue.
