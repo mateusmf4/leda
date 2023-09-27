@@ -66,9 +66,6 @@ public class HashtableClosedAddressImpl<T> extends
 			}
 		}
 		return result;
-
-		// for (; Util.isPrime(number); ++number) {}
-		// return number;
 	}
 
 	private int hash(T element) {
