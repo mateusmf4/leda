@@ -81,16 +81,18 @@ public class HashtableClosedAddressImpl<T> extends
 
 	@Override
 	public void insert(T element) {
-		int hash = this.hash(element);
-
-		if (table[hash] == null) {
-			table[hash] = new LinkedList<T>();
-		} else {
-			COLLISIONS++;
+		if (element != null) {
+			int hash = this.hash(element);
+	
+			if (table[hash] == null) {
+				table[hash] = new LinkedList<T>();
+			} else {
+				COLLISIONS++;
+			}
+			getSlot(hash).add(element);
+	
+			++elements;
 		}
-		getSlot(hash).add(element);
-
-		++elements;
 	}
 
 	@Override
