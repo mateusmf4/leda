@@ -57,15 +57,10 @@ public class HashtableClosedAddressImpl<T> extends
 	 * prime.
 	 */
 	int getPrimeAbove(int number) {
-		int result = 0;
-		while (result == 0) {
-			if (Util.isPrime(number)) {
-				result = number;
-			} else {
-				number++;
-			}
+		while (!Util.isPrime(number)) {
+			++number;
 		}
-		return result;
+		return number;
 	}
 
 	private int hash(T element) {
