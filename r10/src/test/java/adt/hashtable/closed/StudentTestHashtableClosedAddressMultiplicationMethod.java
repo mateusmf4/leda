@@ -89,4 +89,16 @@ public class StudentTestHashtableClosedAddressMultiplicationMethod {
 		assertEquals(80, table1.size());
 	}
 
+	@Test
+	public void testDuplicates() {
+		assertEquals(80, table1.size());
+		table1.insert(4444);
+		assertEquals(81, table1.size());
+		table1.insert(4444);
+		assertEquals(81, table1.size());
+		table1.insert(4444);
+		table1.insert(4444);
+		assertEquals(81, table1.size());
+	}
+
 }
