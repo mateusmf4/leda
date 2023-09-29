@@ -89,23 +89,27 @@ public class HashtableClosedAddressImpl<T> extends
 
 	@Override
 	public void remove(T element) {
-		int hash = this.hash(element);
-
-		if (table[hash] != null) {
-			getSlot(hash).remove(element);
-			--elements;
+		if (element != null) {
+			int hash = this.hash(element);
+	
+			if (table[hash] != null) {
+				getSlot(hash).remove(element);
+				--elements;
+			}
 		}
 	}
 
 	@Override
 	public T search(T element) {
-		int hash = this.hash(element);
 		T result = null;
-		if (table[hash] != null) {
-			LinkedList<T> list = getSlot(hash);
-			int index = list.indexOf(element);
-			if (index != -1)
-				result = list.get(index);
+		if (element != null) {
+			int hash = this.hash(element);
+			if (table[hash] != null) {
+				LinkedList<T> list = getSlot(hash);
+				int index = list.indexOf(element);
+				if (index != -1)
+					result = list.get(index);
+			}
 		}
 		return result;
 	}
@@ -114,10 +118,12 @@ public class HashtableClosedAddressImpl<T> extends
 	public int indexOf(T element) {
 		int index = -1;
 		
-		int hash = this.hash(element);
-		if (table[hash] != null) {
-			if (getSlot(hash).contains(element))
-				index = hash;
+		if (element != null) {
+			int hash = this.hash(element);
+			if (table[hash] != null) {
+				if (getSlot(hash).contains(element))
+					index = hash;
+			}
 		}
 
 		return index;
