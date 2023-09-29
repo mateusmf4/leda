@@ -43,18 +43,10 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 	@Override
 	public void remove(T element) {
 		if (element != null) {
-			int i = 0;
-			boolean found = false;
-			while (!found && i < this.capacity()) {
-				int hash = hash(element, i);
-	
-				if (table[hash] != null && table[hash].equals(element)) {
-					found = true;
-					table[hash] = deletedElement;
-					--elements;
-				} else {
-					++i;
-				}
+			int index = indexOf(element);
+			if (index != -1) {
+				table[index] = deletedElement;
+				--elements;
 			}
 		}
 	}
