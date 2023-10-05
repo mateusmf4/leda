@@ -6,9 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
-import adt.hashtable.open.AbstractHashtableOpenAddress;
-import adt.hashtable.open.HashtableElement;
-import adt.hashtable.open.HashtableOpenAddressLinearProbingImpl;
 
 public class StudentTestHashtableOpenAddressLinearProbing {
 
@@ -117,6 +114,37 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 		table1.insert(new HashtableElement(4444));
 		table1.insert(new HashtableElement(4444));
 		assertEquals(5, table1.size());
+	}
+
+	@Test
+	public void testFullThrows() {
+		assertFalse(table1.isFull());
+		table1.insert(new HashtableElement(1));
+		table1.insert(new HashtableElement(6));
+		table1.insert(new HashtableElement(11));
+		table1.insert(new HashtableElement(21));
+		table1.insert(new HashtableElement(9));
+		table1.insert(new HashtableElement(7));
+		assertTrue(table1.isFull());
+		assertThrows(HashtableOverflowException.class, () -> table1.insert(new HashtableElement(44)));
+
+		// não deve lançar exceção, já que o 7 já faz parte da tabela
+		table1.insert(new HashtableElement(7));
+		assertTrue(table1.isFull());
+
+		table1.remove(new HashtableElement(44));
+		assertTrue(table1.isFull());
+
+		table1.remove(new HashtableElement(7));
+		assertFalse(table1.isFull());
+		assertEquals(9, table1.size());
+
+		table1.remove(new HashtableElement(7));
+		assertEquals(9, table1.size());
+
+		table1.insert(new HashtableElement(123));
+		assertTrue(table1.isFull());
+		assertThrows(HashtableOverflowException.class, () -> table1.insert(new HashtableElement(44)));
 	}
 
 }
