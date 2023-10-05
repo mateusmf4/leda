@@ -97,4 +97,19 @@ public class StudentTestHashtableClosedAddressDivisionMethod {
 		table1.insert(4444);
 		assertEquals(81, table1.size());
 	}
+
+	@Test
+	public void testSizeAfterRemove() {
+		table2.insert(4);
+		assertEquals(1, table2.size());
+
+		table2.remove(4);
+		assertEquals(0, table2.size());
+
+		assertNull(table2.search(4));
+		assertEquals(-1, table2.indexOf(4));
+
+		table2.remove(4);
+		assertEquals(0, table2.size());
+	}
 }

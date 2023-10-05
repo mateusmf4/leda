@@ -93,10 +93,9 @@ public class HashtableClosedAddressImpl<T> extends
 	@Override
 	public void remove(T element) {
 		if (element != null) {
-			int hash = this.hash(element);
-	
-			if (table[hash] != null) {
-				getSlot(hash).remove(element);
+			int index = indexOf(element);
+			if (index != -1) {
+				getSlot(index).remove(element);
 				--elements;
 			}
 		}
