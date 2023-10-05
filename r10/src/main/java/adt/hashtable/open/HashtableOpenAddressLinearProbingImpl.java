@@ -20,7 +20,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 
 	@Override
 	public void insert(T element) {
-		if (element != null) {
+		if (element != null && search(element) == null) {
 			int i = 0;
 			boolean found = false;
 			while (!found && i < this.capacity()) {
@@ -30,10 +30,6 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 					found = true;
 					table[hash] = element;
 					++elements;
-				} else if (table[hash].equals(element)) {
-					// se um elemento na tabela é igual ao element,
-					// então saimos do loop sem fazer nada
-					found = true;
 				} else {
 					COLLISIONS++;
 					++i;
