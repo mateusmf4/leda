@@ -1,6 +1,7 @@
 package adt.bst;
 
-import adt.bt.BTNode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
@@ -116,9 +117,22 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public T[] preOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// TODO: sera se é pra usar array direto??
+		ArrayList<T> arr = new ArrayList<>();
+		preOrder(arr, root);
+		Comparable[] result = new Comparable[arr.size()];
+		arr.toArray(result);
+		return (T[]) result;
 	}
+
+	private void preOrder(List<T> arr, BSTNode<T> node) {
+		if (!node.isEmpty()) {
+			arr.add(node.getData());
+			preOrder(arr, (BSTNode<T>) node.getLeft());
+			preOrder(arr, (BSTNode<T>) node.getRight());
+		}
+	}
+
 
 	@Override
 	public T[] order() {
