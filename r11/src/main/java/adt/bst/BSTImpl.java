@@ -3,6 +3,8 @@ package adt.bst;
 import java.util.ArrayList;
 import java.util.List;
 
+import adt.bt.BTNode;
+
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -152,8 +154,44 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		BSTNode<T> node = search(element);
+		if (!node.isEmpty())
+			remove(node);
+	}
+
+	private void remove(BSTNode<T> node) {
+		if (node.isLeaf()) {
+			// tem nenhum filho
+			// transforma node em NIL
+			node.setData(null);
+			node.setLeft(null);
+			node.setRight(null);
+		} else if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
+			// só tem um filho a esquerda
+			BSTNode<T> other = (BSTNode<T>) node.getLeft();
+			node.setData(other.getData());
+			node.setRight(other.getRight());
+			node.setLeft(other.getLeft());
+		} else if (node.getLeft().isEmpty() && !node.getRight().isEmpty()) {
+			// só tem um filho a direita
+			BSTNode<T> other = (BSTNode<T>) node.getRight();
+			node.setData(other.getData());
+			node.setRight(other.getRight());
+			node.setLeft(other.getLeft());
+		} else {
+			// tem ambos os filhos
+			if (node.getLeft().isLeaf()) {
+				node.setData(node.getLeft().getData());
+				node.setLeft(new BSTNode<>());
+			} else if (node.getRight().isLeaf()) {
+				node.setData(node.getRight().getData());
+				node.setRight(new BSTNode<>());
+			} else {
+				T data = node.getRight().getData();
+				remove((BSTNode<T>) node.getRight());
+				node.setData(data);
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
