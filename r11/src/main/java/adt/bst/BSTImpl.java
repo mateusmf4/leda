@@ -146,14 +146,34 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public T[] order() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// TODO: sera se é pra usar array direto??
+		ArrayList<T> arr = new ArrayList<>();
+		order(arr, root);
+		return (T[]) arr.toArray(new Comparable[0]);
+	}
+
+	private void order(List<T> arr, BSTNode<T> node) {
+		if (!node.isEmpty()) {
+			order(arr, (BSTNode<T>) node.getLeft());
+			arr.add(node.getData());
+			order(arr, (BSTNode<T>) node.getRight());
+		}
 	}
 
 	@Override
 	public T[] postOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// TODO: sera se é pra usar array direto??
+		ArrayList<T> arr = new ArrayList<>();
+		postOrder(arr, root);
+		return (T[]) arr.toArray(new Comparable[0]);
+	}
+
+	private void postOrder(List<T> arr, BSTNode<T> node) {
+		if (!node.isEmpty()) {
+			postOrder(arr, (BSTNode<T>) node.getLeft());
+			postOrder(arr, (BSTNode<T>) node.getRight());
+			arr.add(node.getData());
+		}
 	}
 
 	/**
