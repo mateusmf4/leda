@@ -187,8 +187,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 				node.setData(node.getRight().getData());
 				node.setRight(new BSTNode<>());
 			} else {
-				T data = node.getRight().getData();
-				remove((BSTNode<T>) node.getRight());
+				BSTNode<T> suc = sucessor(node.getData());
+				T data = suc.getData();
+				remove(suc);
 				node.setData(data);
 			}
 		}

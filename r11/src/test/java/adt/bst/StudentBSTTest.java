@@ -130,6 +130,7 @@ public class StudentBSTTest {
 		assertArrayEquals(order, tree.order());
 
 		tree.remove(6);
+
 		order = new Integer[] { -40, -34, 0, 2, 5, 9, 12, 23, 67, 76, 232 };
 		assertArrayEquals(order, tree.order());
 
@@ -150,5 +151,23 @@ public class StudentBSTTest {
 		assertEquals(Integer.valueOf(-40), tree.search(-40).getData());
 		assertEquals(Integer.valueOf(-34), tree.search(-34).getData());
 		assertEquals(NIL, tree.search(2534));
+	}
+
+	@Test
+	public void testeMateusRemove() {
+		BST<Integer> tree = new BSTImpl<>();
+		tree.insert(6);
+
+		tree.insert(0);
+		tree.insert(-1);
+		tree.insert(1);
+		
+		tree.insert(10);
+		tree.insert(9);
+		tree.insert(11);
+
+		MateusGraph.printar(tree);
+		tree.remove(6);
+		MateusGraph.printar(tree);
 	}
 }
