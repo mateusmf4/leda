@@ -28,9 +28,11 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	private int height(BSTNode<T> node) {
 		int result = -1;
 		if (!node.isEmpty()) {
-			result = Math.max(result, height((BSTNode<T>) node.getLeft()));
-			result = Math.max(result, height((BSTNode<T>) node.getRight()));
-			result++;
+			int maior = height((BSTNode<T>) node.getLeft());
+			int right = height((BSTNode<T>) node.getRight());
+			if (right > maior)
+				maior = right;
+			result = maior + 1;
 		}
 		return result;
 	}
@@ -130,9 +132,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		// TODO: sera se é pra usar array direto??
 		ArrayList<T> arr = new ArrayList<>();
 		preOrder(arr, root);
-		Comparable[] result = new Comparable[arr.size()];
-		arr.toArray(result);
-		return (T[]) result;
+		return (T[]) arr.toArray(new Comparable[0]);
 	}
 
 	private void preOrder(List<T> arr, BSTNode<T> node) {
