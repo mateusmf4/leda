@@ -166,31 +166,20 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			node.setData(null);
 			node.setLeft(null);
 			node.setRight(null);
-		} else if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
-			// só tem um filho a esquerda
-			BSTNode<T> other = (BSTNode<T>) node.getLeft();
-			node.setData(other.getData());
-			node.setRight(other.getRight());
-			node.setLeft(other.getLeft());
-			node.getLeft().setParent(node);
-			node.getRight().setParent(node);
-		} else if (node.getLeft().isEmpty() && !node.getRight().isEmpty()) {
-			// só tem um filho a direita
-			BSTNode<T> other = (BSTNode<T>) node.getRight();
-			node.setData(other.getData());
-			node.setRight(other.getRight());
-			node.setLeft(other.getLeft());
-			node.getLeft().setParent(node);
-			node.getRight().setParent(node);
 		} else {
-			// tem ambos os filhos
-			if (node.getLeft().isLeaf()) {
-				node.setData(node.getLeft().getData());
-				node.setLeft(new BSTNode<>());
-			} else if (node.getRight().isLeaf()) {
-				node.setData(node.getRight().getData());
-				node.setRight(new BSTNode<>());
+			if (node.getLeft().isEmpty() || node.getRight().isEmpty()) {
+				// só tem um filho
+				BSTNode<T> other = (BSTNode<T>) node.getLeft();
+				if (other.isEmpty())
+					other = (BSTNode<T>) node.getRight();
+
+				node.setData(other.getData());
+				node.setRight(other.getRight());
+				node.setLeft(other.getLeft());
+				node.getLeft().setParent(node);
+				node.getRight().setParent(node);
 			} else {
+				// tem ambos os filhos
 				BSTNode<T> suc = sucessor(node.getData());
 				T data = suc.getData();
 				remove(suc);
