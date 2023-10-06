@@ -127,6 +127,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		throw new UnsupportedOperationException("Not implemented yet!");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T[] preOrder() {
 		// TODO: sera se é pra usar array direto??
@@ -144,6 +145,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T[] order() {
 		// TODO: sera se é pra usar array direto??
@@ -160,6 +162,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T[] postOrder() {
 		// TODO: sera se é pra usar array direto??
