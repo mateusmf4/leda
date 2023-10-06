@@ -41,15 +41,17 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private BSTNode<T> search(BSTNode<T> node, T element) {
+		BSTNode<T> result = null;
 		if (node.isEmpty()) {
-			return new BSTNode<>();
+			result = new BSTNode<>();
 		} else if (node.getData().equals(element)) {
-			return node;
+			result = node;
 		} else if (node.getData().compareTo(element) > 0) {
-			return search((BSTNode<T>) node.getLeft(), element);
+			result = search((BSTNode<T>) node.getLeft(), element);
 		} else {
-			return search((BSTNode<T>) node.getRight(), element);
+			result = search((BSTNode<T>) node.getRight(), element);
 		}
+		return result;
 	}
 
 	@Override
@@ -77,11 +79,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private BSTNode<T> maximum(BSTNode<T> node) {
-		if (node.isEmpty() || node.getRight().isEmpty()) {
-			return node;
-		} else {
-			return maximum((BSTNode<T>) node.getRight());
+		BSTNode<T> result = null;
+		if (!node.isEmpty()) {
+			if (node.getRight().isEmpty()) {
+				result = node;
+			} else {
+				result = maximum((BSTNode<T>) node.getRight());
+			}
 		}
+		return result;
 	}
 
 	@Override
@@ -90,11 +96,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private BSTNode<T> minimum(BSTNode<T> node) {
-		if (node.isEmpty() || node.getLeft().isEmpty()) {
-			return node;
-		} else {
-			return minimum((BSTNode<T>) node.getLeft());
+		BSTNode<T> result = null;
+		if (!node.isEmpty()) {
+			if (node.getLeft().isEmpty()) {
+				result = node;
+			} else {
+				result = minimum((BSTNode<T>) node.getLeft());
+			}
 		}
+		return result;
 	}
 
 	@Override
