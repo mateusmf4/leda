@@ -111,14 +111,43 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public BSTNode<T> sucessor(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return sucessor(root, element);
+	}
+
+	private BSTNode<T> sucessor(BSTNode<T> node, T element) {
+		BSTNode<T> result = null;
+		// TODO: não ta igual com adalberto.. mas funciona eu acredito!
+		if (!node.isEmpty()) {
+			if (node.getData().compareTo(element) <= 0) {
+				result = sucessor((BSTNode<T>) node.getRight(), element);
+			} else {
+				result = node;
+				BSTNode<T> other = sucessor((BSTNode<T>) node.getLeft(), element);
+				if (other != null)
+					result = other;
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public BSTNode<T> predecessor(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return predecessor(root, element);
+	}
+
+	private BSTNode<T> predecessor(BSTNode<T> node, T element) {
+		BSTNode<T> result = null;
+		if (!node.isEmpty()) {
+			if (node.getData().compareTo(element) >= 0) {
+				result = predecessor((BSTNode<T>) node.getLeft(), element);
+			} else {
+				result = node;
+				BSTNode<T> other = predecessor((BSTNode<T>) node.getRight(), element);
+				if (other != null)
+					result = other;
+			}
+		}
+		return result;
 	}
 
 	@Override
