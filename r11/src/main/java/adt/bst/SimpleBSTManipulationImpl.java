@@ -47,8 +47,7 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 
 	@Override
 	public T orderStatistic(BST<T> tree, int k) {
-		// nlogn eu acredito...
-		return orderStatistic(tree.getRoot(), k);	
+		return orderStatistic(tree.getRoot(), k);
 	}
 
 	private int nodeSize(BTNode<T> node) {
