@@ -1,6 +1,8 @@
 package adt.bst;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -131,5 +133,38 @@ public class ManipTests {
 		BST<Integer> t4 = createTreeBig();
 		t4.insert(8);
 		assertFalse(impl.isSimilar(createTreeBig(), t4));
+	}
+
+	@Test
+	public void testOrderStatistic() {
+		SimpleBSTManipulation<Integer> impl = getImpl();
+
+		BST<Integer> tree = new BSTImpl<>();
+		tree.insert(67);
+		tree.insert(53);
+		tree.insert(50);
+		tree.insert(35);
+		tree.insert(30);
+		tree.insert(51);
+		tree.insert(55);
+
+		assertEquals(Integer.valueOf(30), impl.orderStatistic(tree, 1));
+		assertEquals(Integer.valueOf(35), impl.orderStatistic(tree, 2));
+		assertEquals(Integer.valueOf(50), impl.orderStatistic(tree, 3));
+		assertEquals(Integer.valueOf(51), impl.orderStatistic(tree, 4));
+		assertEquals(Integer.valueOf(53), impl.orderStatistic(tree, 5));
+		assertEquals(Integer.valueOf(55), impl.orderStatistic(tree, 6));
+		assertEquals(Integer.valueOf(67), impl.orderStatistic(tree, 7));
+
+		assertNull(impl.orderStatistic(tree, 0));
+		assertNull(impl.orderStatistic(tree, 8));
+		assertNull(impl.orderStatistic(tree, 10));
+		assertNull(impl.orderStatistic(tree, 90));
+
+		BST<Integer> tree2 = createTreeBig();
+		Comparable[] arr = tree2.order();
+		for (int i = 0; i < arr.length; ++i) {
+			assertEquals(arr[i], impl.orderStatistic(tree2, i + 1));
+		}
 	}
 }
