@@ -168,4 +168,26 @@ public class StudentBSTTest {
 
 		tree.remove(6);
 	}
+
+	@Test
+	public void testeMateusSucessor() {
+		BST<Integer> tree = new BSTImpl<>();
+		tree.insert(15);
+		tree.insert(20);
+
+		tree.insert(6);
+		tree.insert(3);
+		tree.insert(2);
+		tree.insert(4);
+
+		tree.insert(7);
+		tree.insert(13);
+		tree.insert(9);
+
+		assertEquals(Integer.valueOf(15), tree.sucessor(13).getData());
+
+		tree.insert(14);
+
+		assertEquals(Integer.valueOf(14), tree.sucessor(13).getData());
+	}
 }
