@@ -166,8 +166,6 @@ public class StudentBSTTest {
 		tree.insert(9);
 		tree.insert(11);
 
-		MateusGraph.printar(tree);
 		tree.remove(6);
-		MateusGraph.printar(tree);
 	}
 }
