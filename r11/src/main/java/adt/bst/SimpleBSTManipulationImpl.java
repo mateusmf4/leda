@@ -1,5 +1,7 @@
 package adt.bst;
 
+import adt.bt.BTNode;
+
 /**
  * - Esta eh a unica classe que pode ser modificada 
  * @author adalbertocajueiro
@@ -30,8 +32,17 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 
 	@Override
 	public boolean isSimilar(BST<T> tree1, BST<T> tree2) {
-		// TODO Implement this method
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return isSimilar(tree1.getRoot(), tree2.getRoot());
+	}
+
+	// TODO: pode usar BTNode ?
+	private boolean isSimilar(BTNode<T> n1, BTNode<T> n2) {
+		boolean result = n1.isEmpty() == n2.isEmpty();
+		// se ambos não forem vazio
+		if (!n1.isEmpty() && !n2.isEmpty()) {
+			result = isSimilar(n1.getLeft(), n2.getLeft()) && isSimilar(n1.getRight(), n2.getRight());
+		}
+		return result;
 	}
 
 	@Override
@@ -41,3 +52,4 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 	}
 
 }
+ 
