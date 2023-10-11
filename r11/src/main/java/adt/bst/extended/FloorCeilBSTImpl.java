@@ -1,7 +1,7 @@
 package adt.bst.extended;
 
 import adt.bst.BSTImpl;
-import adt.bst.BSTNode;
+import adt.bt.BTNode;
 
 /**
  * Note que esta classe estende sua implementacao de BST (BSTImpl).
@@ -18,7 +18,7 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		return floor(root, numero);
 	}
 
-	private Integer floor(BSTNode<Integer> node, double num) {
+	private Integer floor(BTNode<Integer> node, double num) {
 		Integer result = null;
 		if (!node.isEmpty()) {
 			int compare = node.getData().compareTo((int)num);
@@ -26,11 +26,11 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 				result = node.getData();
 			} else if (compare < 0) {
 				result = node.getData();
-				Integer other = floor((BSTNode<Integer>) node.getRight(), num);
+				Integer other = floor(node.getRight(), num);
 				if (other != null)
 					result = other;
 			} else {
-				result = floor((BSTNode<Integer>) node.getLeft(), num);
+				result = floor(node.getLeft(), num);
 			}
 		}
 		return result;
@@ -44,7 +44,7 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		return ceil(getRoot(), numero);
 	}
 
-	private Integer ceil(BSTNode<Integer> node, double num) {
+	private Integer ceil(BTNode<Integer> node, double num) {
 		Integer result = null;
 		if (!node.isEmpty()) {
 			int compare = node.getData().compareTo((int)num);
@@ -52,11 +52,11 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 				result = node.getData();
 			} else if (compare > 0) {
 				result = node.getData();
-				Integer other = ceil((BSTNode<Integer>) node.getLeft(), num);
+				Integer other = ceil(node.getLeft(), num);
 				if (other != null)
 					result = other;
 			} else {
-				result = ceil((BSTNode<Integer>) node.getRight(), num);
+				result = ceil(node.getRight(), num);
 			}
 		}
 		return result;
