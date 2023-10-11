@@ -78,14 +78,33 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	}
 
 	// ///////////// METODOS A IMPLEMENTAR
+	private boolean validPos(int pos) {
+		return pos >= 0 && pos < heap.length;
+	}
+
+	private boolean isMenor(T a, T b) {
+		// TODO: ??? sem sentido
+		// TODO: tenho que usar > 0 para os testes funcionar, porem não faz muito sentido.
+		return comparator.compare(a, b) > 0;
+	}
+
 	/**
 	 * Valida o invariante de uma heap a partir de determinada posicao, que pode
 	 * ser a raiz da heap ou de uma sub-heap. O heapify deve usar o comparator
 	 * para subir os elementos na heap.
 	 */
 	private void heapify(int position) {
-		// TODO Implement htis method.
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int menor = position;
+		if (validPos(left(position)) && isMenor(heap[left(position)], heap[menor])) {
+			menor = left(position);
+		}
+		if (validPos(right(position)) && isMenor(heap[right(position)], heap[menor])) {
+			menor = right(position);
+		}
+		if (menor != position) {
+			Util.swap(heap, position, menor);
+			heapify(menor);
+		}
 	}
 
 	@Override
@@ -95,14 +114,22 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 			heap = Arrays.copyOf(heap, heap.length + INCREASING_FACTOR);
 		}
 		// /////////////////////////////////////////////////////////////////
-		// TODO Implemente a insercao na heap aqui.
-		throw new UnsupportedOperationException("Not implemented yet!");
+		++index;
+		int i = index;
+		while (i > 0 && isMenor(element, heap[parent(i)])) {
+			heap[i] = heap[parent(i)];
+			i = parent(i);
+		}
+		heap[i] = element;
 	}
 
 	@Override
 	public void buildHeap(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		heap = array;
+		index = heap.length - 1;
+		for (int i = parent(index); i >= 0; --i) {
+			heapify(i);
+		}
 	}
 
 	@Override
@@ -125,8 +152,7 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return index + 1;
 	}
 
 	public Comparator<T> getComparator() {
