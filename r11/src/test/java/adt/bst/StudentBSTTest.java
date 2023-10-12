@@ -189,5 +189,9 @@ public class StudentBSTTest {
 		tree.insert(14);
 
 		assertEquals(Integer.valueOf(14), tree.sucessor(13).getData());
+
+		// TODO: isso ta certo?
+		// 12 não está na arvore, portanto deve retornar null.
+		assertNull(tree.sucessor(12));
 	}
 }

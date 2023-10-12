@@ -113,7 +113,11 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public BSTNode<T> sucessor(T element) {
-		return sucessor(root, element);
+		BSTNode<T> result = null;
+		if (!search(element).isEmpty()) {
+			result = sucessor(root, element);
+		}
+		return result;
 	}
 
 	private BSTNode<T> sucessor(BSTNode<T> node, T element) {
@@ -134,7 +138,11 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public BSTNode<T> predecessor(T element) {
-		return predecessor(root, element);
+		BSTNode<T> result = null;
+		if (!search(element).isEmpty()) {
+			result = predecessor(root, element);
+		}
+		return result;
 	}
 
 	private BSTNode<T> predecessor(BSTNode<T> node, T element) {
