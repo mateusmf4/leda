@@ -198,7 +198,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] preOrder() {
-		// TODO: sera se é pra usar array direto??
 		ArrayList<T> arr = new ArrayList<>();
 		preOrder(arr, root);
 		return (T[]) arr.toArray(new Comparable[0]);
@@ -216,7 +215,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] order() {
-		// TODO: sera se é pra usar array direto??
 		ArrayList<T> arr = new ArrayList<>();
 		order(arr, root);
 		return (T[]) arr.toArray(new Comparable[0]);
@@ -233,7 +231,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] postOrder() {
-		// TODO: sera se é pra usar array direto??
 		ArrayList<T> arr = new ArrayList<>();
 		postOrder(arr, root);
 		return (T[]) arr.toArray(new Comparable[0]);
