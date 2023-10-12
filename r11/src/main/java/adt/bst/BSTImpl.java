@@ -122,7 +122,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	private BSTNode<T> sucessor(BSTNode<T> node, T element) {
 		BSTNode<T> result = null;
-		// TODO: não ta igual com adalberto.. mas funciona eu acredito!
 		if (!node.isEmpty()) {
 			if (node.getData().compareTo(element) <= 0) {
 				result = sucessor((BSTNode<T>) node.getRight(), element);
