@@ -41,7 +41,7 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		for (Integer x : array) {
 			insert(x);
 		}
-		return ceil(getRoot(), numero);
+		return ceil(root, numero);
 	}
 
 	private Integer ceil(BTNode<Integer> node, double num) {
