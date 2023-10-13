@@ -21,10 +21,10 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	private Integer floor(BTNode<Integer> node, double num) {
 		Integer result = null;
 		if (!node.isEmpty()) {
-			int compare = node.getData().compareTo((int)num);
-			if (compare == 0) {
+			int value = node.getData();
+			if (value == num) {
 				result = node.getData();
-			} else if (compare < 0) {
+			} else if (value < num) {
 				result = node.getData();
 				Integer other = floor(node.getRight(), num);
 				if (other != null)
@@ -47,10 +47,10 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	private Integer ceil(BTNode<Integer> node, double num) {
 		Integer result = null;
 		if (!node.isEmpty()) {
-			int compare = node.getData().compareTo((int)num);
-			if (compare == 0) {
+			int value = node.getData();
+			if (value == num) {
 				result = node.getData();
-			} else if (compare > 0) {
+			} else if (value > num) {
 				result = node.getData();
 				Integer other = ceil(node.getLeft(), num);
 				if (other != null)
