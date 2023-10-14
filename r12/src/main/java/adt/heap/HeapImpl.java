@@ -152,8 +152,15 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T[] heapsort(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// TODO: horrivel
+		HeapImpl<T> otherHeap = new HeapImpl<>((a, b) -> a.compareTo(b));
+		otherHeap.buildHeap(array);
+		for (int i = otherHeap.index; i >= 1; --i) {
+			Util.swap(otherHeap.heap, 0, i);
+			--otherHeap.index;
+			otherHeap.heapify(0);
+		}
+		return otherHeap.heap;
 	}
 
 	@Override
