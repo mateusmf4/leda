@@ -83,8 +83,6 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	}
 
 	private boolean isMenor(T a, T b) {
-		// TODO: ??? sem sentido
-		// TODO: tenho que usar > 0 para os testes funcionar, porem não faz muito sentido.
 		return comparator.compare(a, b) > 0;
 	}
 
