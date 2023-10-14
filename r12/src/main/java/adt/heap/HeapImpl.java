@@ -79,7 +79,7 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	// ///////////// METODOS A IMPLEMENTAR
 	private boolean validPos(int pos) {
-		return pos >= 0 && pos < heap.length;
+		return pos >= 0 && pos < size();
 	}
 
 	private boolean isMenor(T a, T b) {
@@ -132,14 +132,22 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T extractRootElement() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T result = rootElement();
+		if (!isEmpty()) {
+			heap[0] = heap[index];
+			heap[index--] = null;
+			heapify(0);
+		}
+		return result;
 	}
 
 	@Override
 	public T rootElement() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T result = null;
+		if (!isEmpty()) {
+			result = heap[0];
+		}
+		return result;
 	}
 
 	@Override
