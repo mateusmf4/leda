@@ -20,7 +20,7 @@ public class OrderStatisticsHeapImpl<T extends Comparable<T>> implements OrderSt
 	public T getOrderStatistics(T[] array, int k) {
 		PriorityQueue<T> heap = new PriorityQueue<T>();
 		T result = null;
-		if (array.length >= k) {
+		if (array.length >= k && k > 0) {
 			for (T x : array) {
 				heap.add(x);
 			}

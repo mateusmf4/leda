@@ -33,5 +33,9 @@ public class ManipTests {
 		assertNull(impl.getOrderStatistics(values, 8));
 		assertNull(impl.getOrderStatistics(values, 10));
 		assertNull(impl.getOrderStatistics(values, 90));
+
+		assertNull(impl.getOrderStatistics(values, 0));
+		assertNull(impl.getOrderStatistics(values, -1));
+		assertNull(impl.getOrderStatistics(values, -10));
 	}
 }
