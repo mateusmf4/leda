@@ -30,11 +30,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	private int height(BTNode<T> node) {
 		int result = -1;
 		if (!node.isEmpty()) {
-			int maior = height(node.getLeft());
-			int right = height(node.getRight());
-			if (right > maior)
-				maior = right;
-			result = maior + 1;
+			result = Math.max(height(node.getLeft()), height(node.getRight())) + 1;
 		}
 		return result;
 	}
@@ -45,15 +41,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private BSTNode<T> search(BSTNode<T> node, T element) {
-		BSTNode<T> result = null;
-		if (node.isEmpty()) {
-			result = new BSTNode<>();
-		} else if (node.getData().equals(element)) {
-			result = node;
-		} else if (node.getData().compareTo(element) > 0) {
-			result = search((BSTNode<T>) node.getLeft(), element);
-		} else {
-			result = search((BSTNode<T>) node.getRight(), element);
+		BSTNode<T> result = new BSTNode<>();
+		if (!node.isEmpty()) {
+			if (node.getData().equals(element)) {
+				result = node;
+			} else if (node.getData().compareTo(element) > 0) {
+				result = search((BSTNode<T>) node.getLeft(), element);
+			} else {
+				result = search((BSTNode<T>) node.getRight(), element);
+			}
 		}
 		return result;
 	}
