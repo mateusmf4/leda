@@ -45,8 +45,10 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 
 	// AUXILIARY
 	protected void rebalance(BSTNode<T> node) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int balance = calculateBalance(node);
+		if (Math.abs(balance) > 1) {
+			
+		}
 	}
 
 	// AUXILIARY
