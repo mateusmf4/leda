@@ -190,7 +190,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public T[] preOrder() {
 		ArrayList<T> arr = new ArrayList<>();
@@ -207,7 +206,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public T[] order() {
 		ArrayList<T> arr = new ArrayList<>();
@@ -223,7 +221,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public T[] postOrder() {
 		ArrayList<T> arr = new ArrayList<>();
