@@ -12,50 +12,42 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 
 	@Override
 	public Integer floor(Integer[] array, double numero) {
-		boolean minHeap = this.comparator.compare(0, 1) > 0;
-
-		// Queremos escolher o maior elemento que é menor ou igual a `numero`.
-		// Se isso é uma max-heap, então é possivel simplesmente escolher o root,
-		// que é o maior elemento da heap. Porem, em uma min-heap, o root será o menor elemento.
-		// Portanto, em min-heap, os elementos da array são negados, para que o maior vire o menor.
-
-		for (int x : array) {
-			// Só adiciona o valor na heap se é menor ou igual a numero
-			if (x <= numero) {
-				if (minHeap) {
-					this.insert(-x);
-				} else {
-					this.insert(x);
-				}
-			}
+		for (Integer x : array) {
+			this.insert(x);
 		}
 
-		Integer result = this.extractRootElement();
-		if (minHeap && result != null) {
-			result = -result;
+		return floorRec(null, numero);
+	}
+
+	private Integer floorRec(Integer best, double numero) {
+		Integer result = best;
+		Integer elem = this.extractRootElement();
+		if (elem != null) {
+			if (elem <= numero && (best == null || elem > best)) {
+				best = elem;
+			}
+			result = floorRec(best, numero);
 		}
 		return result;
 	}
 
 	@Override
 	public Integer ceil(Integer[] array, double numero) {
-		boolean minHeap = this.comparator.compare(0, 1) > 0;
-
-		for (int x : array) {
-			if (x >= numero) {
-				if (minHeap) {
-					this.insert(x);
-				} else {
-					this.insert(-x);
-				}
-			}
+		for (Integer x : array) {
+			this.insert(x);
 		}
 
-		// Ao contrario do floor, negamos somente na max-heap para que selecione o menor elemento.
+		return ceilRec(null, numero);
+	}
 
-		Integer result = this.extractRootElement();
-		if (!minHeap && result != null) {
-			result = -result;
+	private Integer ceilRec(Integer best, double numero) {
+		Integer result = best;
+		Integer elem = this.extractRootElement();
+		if (elem != null) {
+			if (elem >= numero && (best == null || elem < best)) {
+				best = elem;
+			}
+			result = ceilRec(best, numero);
 		}
 		return result;
 	}
