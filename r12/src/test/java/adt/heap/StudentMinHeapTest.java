@@ -112,4 +112,17 @@ public class StudentMinHeapTest {
 		assertTrue(isHeap);
 	}
 
+	@Test
+	public void testSort2() {
+		assertArrayEquals(new Integer[] { 5, 6, 12, 20, 34, 43, 49, 92 }, heap.heapsort(new Integer[] { 34, 92, 5, 12, 49, 20, 43, 6 }));
+		assertArrayEquals(new Integer[] { 5, 6, 12, 20, 34, 43, 49 }, heap.heapsort(new Integer[] { 34, 5, 12, 49, 20, 43, 6 }));
+		assertArrayEquals(new Integer[] { 5, 6, 12, 20 }, heap.heapsort(new Integer[] { 5, 12, 20, 6 }));
+		assertArrayEquals(new Integer[] { 5, 6, 12 }, heap.heapsort(new Integer[] { 5, 12, 6 }));
+		assertArrayEquals(new Integer[] { 5, 6 }, heap.heapsort(new Integer[] { 5, 6 }));
+		assertArrayEquals(new Integer[] { 5, 6 }, heap.heapsort(new Integer[] { 6, 5 }));
+		
+		assertArrayEquals(new Integer[] { 6 }, heap.heapsort(new Integer[] { 6 }));
+		assertArrayEquals(new Integer[] { 5 }, heap.heapsort(new Integer[] { 5 }));
+	}
+
 }
