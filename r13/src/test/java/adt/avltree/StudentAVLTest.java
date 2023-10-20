@@ -56,7 +56,9 @@ public class StudentAVLTest {
 		avl.remove(-1);
 		assertEquals(4, avl.size());
 
+		MateusGraph.printar(avl);
 		avl.remove(91);
+		MateusGraph.printar(avl);
 		assertEquals(3, avl.size());
 		assertArrayEquals(new Integer[] { 12, 9, 55 }, avl.preOrder());
 
