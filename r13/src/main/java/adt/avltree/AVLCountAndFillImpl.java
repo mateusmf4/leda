@@ -1,5 +1,7 @@
 package adt.avltree;
 
+import adt.bst.BSTNode;
+
 public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 		AVLTreeImpl<T> implements AVLCountAndFill<T> {
 
@@ -30,6 +32,32 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 	@Override
 	public int RLcount() {
 		return RLcounter;
+	}
+
+	@Override
+	protected void rebalance(BSTNode<T> node) {
+		int balance = calculateBalance(node);
+		if (Math.abs(balance) > 1) {
+			if (balance > 0) {
+				// está desbalanceado para a esquerda
+				int childB = calculateBalance((BSTNode<T>) node.getLeft());
+				if (childB >= 0) {
+					LLcounter++;
+				} else {
+					LRcounter++;
+				}
+			} else {
+				// está desbalanceado para a direita
+				int childB = calculateBalance((BSTNode<T>) node.getRight());
+				if (childB <= 0) {
+					RRcounter++;
+				} else {
+					RLcounter++;
+				}
+			}
+		}
+
+		super.rebalance(node);
 	}
 
 	@Override
