@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import adt.bst.BST;
+import adt.bst.BSTImpl;
 import adt.bst.BSTNode;
 import adt.bst.BSTVerifierImpl;
 
@@ -20,6 +22,7 @@ public class StudentAVLTest {
 
 	private void verifyAVL() {
 		assertTrue(new BSTVerifierImpl<>(avl).isBST());
+		assertTrue(new AVLTreeVerifierImpl<>(avl).isAVLTree());
 	}
 
 	@Test
@@ -71,10 +74,8 @@ public class StudentAVLTest {
 		verifyAVL();
 		assertEquals(4, avl.size());
 
-		MateusGraph.printar(avl);
 		avl.remove(91);
 		verifyAVL();
-		MateusGraph.printar(avl);
 		assertEquals(3, avl.size());
 		assertArrayEquals(new Integer[] { 12, 9, 55 }, avl.preOrder());
 
@@ -89,5 +90,47 @@ public class StudentAVLTest {
 		verifyAVL();
 		assertEquals(NIL, avl.getRoot());
 		assertTrue(avl.isEmpty());
+	}
+
+	@Test
+	public void testNotAVL() {
+		AVLTree<Integer> fake = new FakeAVLTree();
+		assertTrue(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+		fake.insert(5);
+		assertTrue(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+		fake.insert(4);
+		assertTrue(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+
+		fake.insert(3);
+		assertFalse(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+		fake.insert(2);
+		assertFalse(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+		fake.insert(6);
+		assertFalse(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+		fake.insert(7);
+		assertFalse(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+		fake.insert(8);
+		assertFalse(new AVLTreeVerifierImpl<>(fake).isAVLTree());
+	}
+
+	@Test
+	public void testIsAVL() {
+		AVLTree<Integer> real = new AVLTreeImpl<>();
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		real.insert(5);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		real.insert(4);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		
+		real.insert(3);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		real.insert(2);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		real.insert(6);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		real.insert(7);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
+		real.insert(8);
+		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
 	}
 }
