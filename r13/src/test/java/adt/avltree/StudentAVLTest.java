@@ -175,4 +175,39 @@ public class StudentAVLTest {
 		real.insert(8);
 		assertTrue(new BSTVerifierImpl<>(real).isBST());
 	}
+
+	@Test
+	public void testWeird() {
+		avl.insert(8);
+		verifyAVL();
+		avl.insert(4);
+		verifyAVL();
+		avl.insert(2);
+		verifyAVL();
+		avl.insert(1);
+		verifyAVL();
+		avl.insert(3);
+		verifyAVL();
+		avl.insert(6);
+		verifyAVL();
+		avl.insert(5);
+		verifyAVL();
+		avl.insert(7);
+		verifyAVL();
+		avl.insert(12);
+		verifyAVL();
+		avl.insert(10);
+		verifyAVL();
+		avl.insert(9);
+		verifyAVL();
+		avl.insert(11);
+		verifyAVL();
+		avl.insert(14);
+		verifyAVL();
+		avl.insert(13);
+		verifyAVL();
+		avl.insert(15);
+		verifyAVL();
+		MateusGraph.printar(avl);
+	}
 }

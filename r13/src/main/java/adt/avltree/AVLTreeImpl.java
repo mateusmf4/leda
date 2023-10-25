@@ -48,6 +48,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 	protected void rebalance(BSTNode<T> node) {
 		int balance = calculateBalance(node);
 		if (Math.abs(balance) > 1) {
+			boolean isRoot = node == root;
 			BSTNode<T> newRoot = root;
 			if (balance > 0) {
 				// está desbalanceado para a esquerda
@@ -72,7 +73,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 					newRoot = Util.leftRotation(node);
 				}
 			}
-			if (newRoot != root) {
+			if (isRoot) {
 				root = newRoot;
 			}
 		}

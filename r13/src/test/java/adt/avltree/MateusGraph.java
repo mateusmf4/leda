@@ -18,16 +18,21 @@ public class MateusGraph {
 		if (node.isEmpty())
 			return -1;
 
-		int id = idCounter++;
-		builder.append(String.format("n%d [label=\"%d\"];", id, node.getData()));
+		// int id = idCounter++;
+		int id = node.getData();
+		builder.append(String.format("n%d [label=%d];", id, node.getData()));
 
 		int left = gerarNode(builder, node.getLeft());
 		if (left != -1)
-			builder.append(String.format("n%d -- n%d [color=\"red\",label=\"L\"];", id, left));
+			builder.append(String.format("n%d -- n%d [color=red,label=L];", id, left));
 		
 		int right = gerarNode(builder, node.getRight());
 		if (right != -1)
-			builder.append(String.format("n%d -- n%d [label=\"R\"];", id, right));
+			builder.append(String.format("n%d -- n%d [label=R];", id, right));
+
+		if (node.getParent() != null) {
+			builder.append(String.format("n%d -- n%d [dir=forward,color=blue];", id, node.getParent().getData()));
+		}
 
 		return id;
 	}
