@@ -1,5 +1,9 @@
 package adt.avltree;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Queue;
+
 import adt.bst.BSTNode;
 
 public class AVLCountAndFillImpl<T extends Comparable<T>> extends
@@ -62,8 +66,21 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 
 	@Override
 	public void fillWithoutRebalance(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+		// FIXME: pode isso?
+		Arrays.sort(array);
 
+		// Faz uma BFS
+		Queue<T[]> queue = new ArrayDeque<>();
+		queue.add(array);
+		while (!queue.isEmpty()) {
+			T[] value = queue.poll();
+			if (value.length != 0) {
+				int mid = value.length / 2;
+				this.insert(value[mid]);
+
+				queue.add(Arrays.copyOfRange(value, 0, mid));
+				queue.add(Arrays.copyOfRange(value, mid + 1, value.length));
+			}
+		}
+	}
 }

@@ -208,6 +208,5 @@ public class StudentAVLTest {
 		verifyAVL();
 		avl.insert(15);
 		verifyAVL();
-		MateusGraph.printar(avl);
 	}
 }
