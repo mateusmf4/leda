@@ -133,4 +133,46 @@ public class StudentAVLTest {
 		real.insert(8);
 		assertTrue(new AVLTreeVerifierImpl<>(real).isAVLTree());
 	}
+
+	@Test
+	public void testNotBST() {
+		BST<Integer> fake = new FakeBST();
+		assertTrue(new BSTVerifierImpl<>(fake).isBST());
+		fake.insert(5);
+		assertTrue(new BSTVerifierImpl<>(fake).isBST());
+		fake.insert(6);
+		assertTrue(new BSTVerifierImpl<>(fake).isBST());
+
+		fake.insert(3);
+		assertFalse(new BSTVerifierImpl<>(fake).isBST());
+		fake.insert(2);
+		assertFalse(new BSTVerifierImpl<>(fake).isBST());
+		fake.insert(6);
+		assertFalse(new BSTVerifierImpl<>(fake).isBST());
+		fake.insert(7);
+		assertFalse(new BSTVerifierImpl<>(fake).isBST());
+		fake.insert(8);
+		assertFalse(new BSTVerifierImpl<>(fake).isBST());
+	}
+
+	@Test
+	public void testIsBST() {
+		BST<Integer> real = new BSTImpl<>();
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+		real.insert(5);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+		real.insert(6);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+
+		real.insert(3);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+		real.insert(2);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+		real.insert(6);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+		real.insert(7);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+		real.insert(8);
+		assertTrue(new BSTVerifierImpl<>(real).isBST());
+	}
 }
