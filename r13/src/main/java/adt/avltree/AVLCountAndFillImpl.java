@@ -66,7 +66,6 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 
 	@Override
 	public void fillWithoutRebalance(T[] array) {
-		// FIXME: pode isso?
 		Arrays.sort(array);
 
 		// Faz uma BFS
