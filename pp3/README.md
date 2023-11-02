@@ -4,3 +4,5 @@ Deveria implementar dois metodos, um para checar se uma BT é simetrica, e outra
 
 ## Notas
 10.0 nos testes.
+
+10.0 no design.
